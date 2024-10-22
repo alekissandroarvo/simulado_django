@@ -16,7 +16,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.urls.static import static
 
 
 from simulados import settings
@@ -26,8 +25,3 @@ urlpatterns = [
     path('', include('simuladosingles.urls')),
 ]
 
-urlpatterns += [
-    static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
-    static(settings.STATIC_URL, document_root=settings.STATIC_ROOT),
-
-]
