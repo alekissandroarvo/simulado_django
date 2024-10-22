@@ -1,0 +1,32 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block title %}Login Page{% endblock %}
+
+{% block nav %}
+{% endblock %}
+
+
+{% block content %}
+<div class="verso">
+    <h1>Login</h1>
+    <form action="{% url 'welcome' %}" method="post" class="form-example">
+        {% csrf_token %}
+        <fieldset>        
+        <div class="form-example">
+            <label for="name">Usuario </label>
+            <input type="text" name="name" id="name" required />
+        </div>
+        <div class="form-example">
+            <label for="senha">Senha </label>
+            <input type="password" name="senha" id="senha" required />
+        </div>
+        <div class="form-example">
+            <input type="submit" value="Login" />
+        </div>
+    </fieldset>
+    </form>
+    <br/>
+    <br/>
+</div>
+
+{% endblock %}
