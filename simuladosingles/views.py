@@ -9,8 +9,8 @@ def login(request):
     return render(request, 'login.html')
 
 def login_view(request):
-    username = request.POST["name"]
-    password = request.POST["senha"]
+    username = request.GET["name"]
+    password = request.GET["senha"]
     user = authenticate(request, username=username, password=password)
     if user is not None:
         login(request)
