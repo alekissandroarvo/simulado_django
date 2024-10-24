@@ -20,6 +20,8 @@ def resultado_questionario(request):
     question_list= Question.objects.order_by("id")
     answer_list_right=[]
     answer_list_wrong=[]    
+    assertiva_right=[]
+    assertiva_wrong=[]
     i=1
     for answer in question_list:
         if answer.resposta == int(request.GET[str(i)]):
@@ -30,8 +32,8 @@ def resultado_questionario(request):
     context = {
         "answer_list_right": answer_list_right,
         "answer_list_wrong": answer_list_wrong,
-        "percent": (len(answer_list_right)/len(question_list))*100
-        
+        "percent": (len(answer_list_right)/len(question_list))*100,
+              
     }
     return render(request, 'resultado_questionario.html',context)
 
