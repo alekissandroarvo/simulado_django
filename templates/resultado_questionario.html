@@ -1,0 +1,27 @@
+{% extends 'home.html' %}
+{% block title %}Gabarito{% endblock %}
+{% block nav %}
+{% endblock %}
+{% block content %}
+<div class="text-center py-10 px-4 sm:px-6 lg:px-8">          
+    <h1 class="block text-2xl font-bold text-gray-600 sm:text-4xl">Gabarito</h1>  
+    {% if answer_list_right %}
+    <p class="block text-2xl text-gray-600 sm:text-base">Acertou as questões:</p>     
+    {% for question in answer_list_right %}      
+          <br/>           
+            <p class="block text-2xl text-gray-600 sm:text-base">{{question}}</p>            
+         <br/>    
+      {% endfor %}
+    {% endif %}
+
+    {% if answer_list_wrong %}
+      <p class="block text-2xl text-gray-600 sm:text-base">Errou as questões:</p> 
+    {% for question in answer_list_wrong %}      
+          <br/>           
+            <p class="block text-2xl text-gray-600 sm:text-base">{{question}}</p>            
+         <br/>    
+      {% endfor %}
+    {% endif %}
+    <p class="block text-2xl text-gray-600 sm:text-base">Você acertou: {{percent}}%</p>
+      {% endblock %}
+</div>

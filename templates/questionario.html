@@ -1,0 +1,36 @@
+{% extends 'home.html' %}
+
+{% block title %}Questionario{% endblock %}
+
+{% block content %}
+<form action="{% url 'resultado_questionario' %}" method="get" class="form-polls">
+    {% csrf_token %}
+      {% for question in question_list %}     
+          <br/>        
+          <div class="text-left py-1 px-10">
+          <fieldset>            
+              <legend>Questão{{question.id}}: Pergunta: {{ question.pergunta }}</legend>  
+              <div>
+                <input type="radio" id="assertiva" name='{{question.id}}' value=1  />
+                <label for={{question.id}}a >a. {{ question.assertiva1 }}</label>
+              </div>
+              <div>
+                  <input type="radio" id="assertiva" name='{{question.id}}' value=2  />
+                  <label for={{question.id}}b>b. {{ question.assertiva2 }}</label>
+                </div>
+                <div>
+                  <input type="radio" id="assertiva" name='{{question.id}}' value=3  />
+                  <label for={{question.id}}c >c. {{ question.assertiva3 }}</label>
+                </div>
+                <div>
+                  <input type="radio" id="assertiva" name='{{question.id}}' value=4  />
+                  <label for={{question.id}}d>d. {{ question.assertiva4 }}</label>
+                </div>    
+              
+          </fieldset>  
+        </div>
+       <br/>       
+      {% endfor %}
+      <input class="bg-gray-700 ml-10 mb-10 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-50" type="submit" value="Responder" />
+    </form>
+{% endblock %}
