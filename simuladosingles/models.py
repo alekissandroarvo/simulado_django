@@ -8,3 +8,7 @@ class Question(models.Model):
     assertiva3 = models.CharField(max_length=500)
     assertiva4 = models.CharField(max_length=500)
     resposta = models.CharField(max_length=500)
+
+class FillInBlank(models.Model):
+    pergunta = models.CharField(max_length=5000)
+    resposta = models.CharField(max_length=5000)
