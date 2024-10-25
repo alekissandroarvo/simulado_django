@@ -11,20 +11,20 @@
           <fieldset>            
               <legend>Questão{{question.id}}: Pergunta: {{ question.pergunta }}</legend>  
               <div>
-                <input type="radio" id="assertiva" name='{{question.id}}' value=1  />
+                <input type="radio" id="assertiva" name='{{question.id}}' value="{{question.assertiva1}}"  />
                 <label for={{question.id}}a >a. {{ question.assertiva1 }}</label>
               </div>
               <div>
-                  <input type="radio" id="assertiva" name='{{question.id}}' value=2  />
-                  <label for={{question.id}}b>b. {{ question.assertiva2 }}</label>
+                  <input type="radio" id="assertiva" name='{{question.id}}' value="{{question.assertiva2}}" />
+                  <label for={{question.id}}b>b. {{question.assertiva2}}</label>
                 </div>
                 <div>
-                  <input type="radio" id="assertiva" name='{{question.id}}' value=3  />
-                  <label for={{question.id}}c >c. {{ question.assertiva3 }}</label>
+                  <input type="radio" id="assertiva" name='{{question.id}}' value="{{question.assertiva3}}" />
+                  <label for={{question.id}}c >c. {{question.assertiva3}}</label>
                 </div>
                 <div>
-                  <input type="radio" id="assertiva" name='{{question.id}}' value=4  />
-                  <label for={{question.id}}d>d. {{ question.assertiva4 }}</label>
+                  <input type="radio" id="assertiva" name='{{question.id}}' value="{{question.assertiva4}}" />
+                  <label for={{question.id}}d>d. {{question.assertiva4}}</label>
                 </div>    
               
           </fieldset>  
