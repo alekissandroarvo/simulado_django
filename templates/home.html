@@ -9,7 +9,7 @@
         <script src="https://cdn.tailwindcss.com"></script>
     </head>
     <body>
-        <div class="bg-gray-100 h-screen ">               
+        <div class="bg-gray-100 h-full ">               
 
         {% block nav %}
     <nav class="nav">
@@ -27,6 +27,9 @@
               <div class="text-sm lg:flex-grow">
                 <a href="{% url 'home' %}" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
                   Home
+                </a>
+                <a href="{% url 'simplecontinuouspresent' %}" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+                  Simple and Continuous Present
                 </a>
                 <a href="{% url 'questionario' %}" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
                   Questionário

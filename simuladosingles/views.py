@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
 from .models import Question
+from .models import FillInBlank_by_topic
 
 # Create your views here.
 def home(request):
@@ -52,3 +53,23 @@ def login_view(request):
         return render(request, "welcome.html",context)
     else:
         return render(request, "badlogin.html")
+
+def questionario_topico(request):
+    question_list = FillInBlank_by_topic.objects.order_by("id")
+    context = {
+        "question_list": question_list,
+    }
+    return render(request, 'simplecontinuouspresent.html',context)
+
+def resultsimplecontinuouspresent(request):
+    question_list= FillInBlank_by_topic.objects.order_by("id")    
+    respostas = []    
+    i=1
+    for answer in question_list:
+        respostas.append(request.GET[str(i)])
+        i=i+1
+    context = {
+        # "question_list": question_list,
+        "question_list" :zip(respostas,question_list),
+    }
+    return render(request, 'resultsimplecontinuouspresent.html',context)
