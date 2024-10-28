@@ -62,7 +62,7 @@ def questionario_topico(request):
     return render(request, 'simplecontinuouspresent.html',context)
 
 def resultsimplecontinuouspresent(request):
-    question_list= FillInBlank_by_topic.objects.order_by("id")    
+    question_list= FillInBlank_by_topic.objects.order_by("id")   
     respostas = []    
     i=1
     for answer in question_list:
