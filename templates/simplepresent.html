@@ -3,11 +3,85 @@
 {% block title %}Simple Present{% endblock %}
 
 {% block content %} 
-<div class="text-left py-1 px-10">
+<h1 class="block text-center px-10 text-2xl font-bold text-gray-600 sm:text-4xl">Simple Present</h1>
+<p class="mt-3 px-10 text-lg text-gray-500"> Read the questions & answers about ALAN and ask and answer about JUDITH.</p>
+      
+<p class="px-10">
+    <b>What does Alan do?</b><br>
+    Alan’s a lorry driver. 
+  </p>
+  
+  <p class="px-10">
+    <b>How old is Alan?</b><br>
+    He’s twenty-five years old. 
+  </p>
+  
+  <p class="px-10">
+    <b>How many days a week does he work?</b><br>
+    He works five days a week. 
+  </p>
+  
+  <p class="px-10">
+    <b>What time does he get up?</b><br>
+    He gets up at six o’clock every day. 
+  </p>
+  
+  <p class="px-10">
+    <b>What does he eat for breakfast?</b><br>
+    He eats an enormous breakfast. 
+  </p>
+  
+  <p class="px-10">
+    <b>What does he drink?</b><br>
+    He drinks two cups of tea. 
+  </p>
+  
+  <p class="px-10">
+    <b>What does he do after breakfast?</b><br>
+    Then he kisses his wife. 
+  </p>
+  
+  <p class="px-10">
+    <b>What time does he leave for work?</b><br>
+    He leaves for work at half past six. 
+  </p>
+  
+  <p class="px-10">
+    <b>Where does he have lunch?</b><br>
+    He has lunch in a transport café. 
+  </p>
+  
+  <p class="px-10">
+    <b>What time does he come home?</b><br>
+    He comes home at five o’clock. 
+  </p>
+  
+  <p class="px-10">
+    <b>Where does he go in the evening?</b><br>
+    In the evening he goes to the pub. 
+  </p>
+  
+  <p class="px-10">
+    <b>What time does he go to bed?</b><br>
+    He goes to bed at ten o’clock. 
+  </p>
+  <br/>
 
 
-    
-</div>
+  <p class="mt-3 px-10 text-lg text-gray-500"> JUDITH.</p>
+
+<form class="px-10"  action="{% url 'resultsimplepresent' %}" method="get" class="form-polls">
+  {% for question in question_list %}  
+  {% if question.id > 25 %} 
+  <input type="text"  name='{{question.id}}'   />
+  <br/>
+  <label for={{question.id}}>{{ question.pergunta }}</label>
+  <br/>    
+  {%endif%} 
+  {% endfor %}  
+  <br/>
+  <input class="bg-gray-700 ml-10 mb-10 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-50" type="submit" value="Responder" />
+</form>
 
 
 

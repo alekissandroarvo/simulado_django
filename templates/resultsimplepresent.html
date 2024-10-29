@@ -1,8 +1,9 @@
 {% extends 'home.html' %}
 
-{% block title %}Gabarito Simple & Continuous Present{% endblock %}
+{% block title %}Gabarito Simple Present{% endblock %}
 
 {% block content %}
+
 <h1 class="block text-center text-2xl font-bold text-gray-600 sm:text-4xl">Gabarito</h1>  
 {% for question,answer in question_list %}
 <div class="text-left py-1 px-10">
@@ -12,4 +13,5 @@
 </div>
 {% endfor %}
 <br/>
+
 {% endblock %}

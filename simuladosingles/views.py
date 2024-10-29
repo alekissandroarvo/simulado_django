@@ -54,22 +54,37 @@ def login_view(request):
     else:
         return render(request, "badlogin.html")
 
-def questionario_topico(request):
-    question_list = FillInBlank_by_topic.objects.order_by("id")
+def simplecontinuouspresent(request):
+    question_list = FillInBlank_by_topic.objects.filter(assunto="simplecontinuouspresent").order_by("id")
     context = {
         "question_list": question_list,
     }
     return render(request, 'simplecontinuouspresent.html',context)
 
-def resultsimplecontinuouspresent(request):
-    question_list= FillInBlank_by_topic.objects.order_by("id")   
+def simplepresent(request):
+    question_list = FillInBlank_by_topic.objects.filter(assunto="simplepresent").order_by("id")
+    context = {
+        "question_list": question_list,
+    }
+    return render(request, 'simplepresent.html',context)
+
+def resultsimplepresent(request):
+    question_list = FillInBlank_by_topic.objects.filter(assunto="simplepresent").order_by("id")
     respostas = []    
-    i=1
     for answer in question_list:
-        respostas.append(request.GET[str(i)])
-        i=i+1
+        respostas.append(request.GET[str(answer.id)])
+    context = {
+        "question_list": zip(question_list,respostas),
+    }
+    return render(request, 'resultsimplepresent.html',context)
+
+def resultsimplecontinuouspresent(request):
+    question_list= FillInBlank_by_topic.objects.filter(assunto="simplecontinuouspresent").order_by("id")  
+    respostas = []       
+    for answer in question_list:
+        respostas.append(request.GET[str(answer.id)])
     context = {
         # "question_list": question_list,
-        "question_list" :zip(respostas,question_list),
+        "question_list" :zip(question_list,respostas),
     }
     return render(request, 'resultsimplecontinuouspresent.html',context)
