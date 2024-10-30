@@ -56,35 +56,55 @@ def login_view(request):
 
 def simplecontinuouspresent(request):
     question_list = FillInBlank_by_topic.objects.filter(assunto="simplecontinuouspresent").order_by("id")
+    question_list_questao2 = FillInBlank_by_topic.objects.filter(assunto="simplecontinuouspresentquestao2").order_by("id")
+
     context = {
         "question_list": question_list,
+        "question_list_questao2": question_list_questao2,
     }
     return render(request, 'simplecontinuouspresent.html',context)
 
 def simplepresent(request):
     question_list = FillInBlank_by_topic.objects.filter(assunto="simplepresent").order_by("id")
+    question_list_table= FillInBlank_by_topic.objects.filter(assunto="simplepresenttable").order_by("id")  
+
     context = {
         "question_list": question_list,
+        "question_list_table": question_list_table,
     }
     return render(request, 'simplepresent.html',context)
 
 def resultsimplepresent(request):
     question_list = FillInBlank_by_topic.objects.filter(assunto="simplepresent").order_by("id")
+    question_list_table = FillInBlank_by_topic.objects.filter(assunto="simplepresenttable").order_by("id")
+
     respostas = []    
+    respostas_table = []
     for answer in question_list:
         respostas.append(request.GET[str(answer.id)])
+    for answer in question_list_table:
+        respostas_table.append(request.GET[str(answer.id)])
     context = {
         "question_list": zip(question_list,respostas),
+        "question_list_table": zip(question_list_table,respostas_table),
+
     }
     return render(request, 'resultsimplepresent.html',context)
 
 def resultsimplecontinuouspresent(request):
     question_list= FillInBlank_by_topic.objects.filter(assunto="simplecontinuouspresent").order_by("id")  
+    question_list_questao2= FillInBlank_by_topic.objects.filter(assunto="simplecontinuouspresentquestao2").order_by("id")  
+
     respostas = []       
+    respostas_questao2 = []
     for answer in question_list:
         respostas.append(request.GET[str(answer.id)])
+    for answer in question_list_questao2:
+        respostas_questao2.append(request.GET[str(answer.id)])
     context = {
         # "question_list": question_list,
         "question_list" :zip(question_list,respostas),
+        "question_list_questao2" :zip(question_list_questao2,respostas_questao2),
+
     }
     return render(request, 'resultsimplecontinuouspresent.html',context)

@@ -66,24 +66,168 @@
     He goes to bed at ten o’clock. 
   </p>
   <br/>
-
-
   <p class="mt-3 px-10 text-lg text-gray-500"> JUDITH.</p>
-
 <form class="px-10"  action="{% url 'resultsimplepresent' %}" method="get" class="form-polls">
   {% for question in question_list %}  
-  {% if question.id > 25 %} 
+  
   <input type="text"  name='{{question.id}}'   />
   <br/>
   <label for={{question.id}}>{{ question.pergunta }}</label>
   <br/>    
-  {%endif%} 
   {% endfor %}  
   <br/>
-  <input class="bg-gray-700 ml-10 mb-10 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-50" type="submit" value="Responder" />
+
+
+<p class="mt-3 px-10 text-lg text-gray-500">Fill in the chart for yourself. Then look at the example. Choose and write TEN sentences
+  from the chart:</p>
+<table class="w-600 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+  <thead class="text-xs  text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+  <tr class="table-auto border-collapse border border-gray-300">
+  <th class="table-auto border-collapse border border-gray-300"></th>
+  <th class="table-auto px-4 text-center border-collapse border-left border-top border-bottom border-gray-300">Always</th>
+  <th  ></th>
+  <th class="table-auto px-4 text-center border-collapse border-left border-top border-bottom border-gray-300">Usually</th>
+  <th ></th>
+  <th class="table-auto px-4 text-center border-collapse border-left border-top border-bottom border-gray-300">Often</th>
+  <th ></th>
+  <th class="table-auto px-4 text-center border-collapse border-left border-top border-bottom border-gray-300">Sometimes</th>
+  <th ></th>
+  <th class="table-auto px-4 text-center border-collapse border-left border-top border-bottom border-gray-300">Never</th>
+  </tr>
+  <tr class="table-auto text-center border-collapse border border-gray-300">
+  <th class="table-auto text-center border-collapse border border-gray-300"></th>
+  <th class="table-auto px-2 text-center border-collapse border border-gray-300">Tom</th>
+  <th class="table-auto px-2 text-center border-collapse border border-gray-300">You</th>
+  <th class="table-auto px-2 text-center border-collapse border border-gray-300">Tom</th>
+  <th class="table-auto px-2 text-center border-collapse border border-gray-300">You</th>
+  <th class="table-auto px-2 text-center border-collapse border border-gray-300">Tom</th>
+  <th class="table-auto px-2 text-center border-collapse border border-gray-300">You</th>
+  <th class="table-auto px-2 text-center border-collapse border border-gray-300">Tom</th>
+  <th class="table-auto px-2 text-center border-collapse border border-gray-300">You</th>
+  <th class="table-auto px-2 text-center border-collapse border border-gray-300">Tom</th>
+  <th class="table-auto px-2 text-center border-collapse border border-gray-300">You</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr class="table-auto border-collapse border border-gray-300">
+  <td class="table-auto border-collapse border border-gray-300">Drink fizzy drinks</td>
+  <td class="table-auto text-center border-collapse border border-gray-300">*</td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  </tr>
+  <tr class="table-auto border-collapse border border-gray-300">
+  <td class="table-auto border-collapse border border-gray-300">buy fast food</td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto text-center border-collapse border border-gray-300">*</td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  </tr>
+  <tr class="table-auto border-collapse border border-gray-300">
+  <td class="table-auto border-collapse border border-gray-300">play tennis</td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto text-center border-collapse border border-gray-300">*</td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  </tr>
+  <tr class="table-auto border-collapse border border-gray-300">
+  <td class="table-auto border-collapse border border-gray-300">eat sweets</td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto text-center border-collapse border border-gray-300">*</td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  </tr>
+  <tr class="table-auto border-collapse border border-gray-300">
+  <td class="table-auto border-collapse border border-gray-300">watch TV in the evenings</td>
+  <td class="table-auto text-center border-collapse border border-gray-300">*</td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  </tr>
+  <tr class="table-auto border-collapse border border-gray-300">
+  <td class="table-auto border-collapse border border-gray-300">save money</td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto text-center border-collapse border border-gray-300">*</td>
+  </tr>
+  <tr class="table-auto border-collapse border border-gray-300">
+  <td class="table-auto border-collapse border border-gray-300">listen to cassettes</td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto text-center border-collapse border border-gray-300">*</td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  </tr>
+  <tr class="table-auto border-collapse border border-gray-300">
+  <td class="table-auto border-collapse border border-gray-300">play computer games</td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto text-center border-collapse border border-gray-300">*</td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  <td class="table-auto border-collapse border border-gray-300"></td>
+  </tr>
+  </tbody>
+  </table>
+<br/>
+<p >Example: Tom always drinks fizzy drinks.</p>
+{% for question_table in question_list_table %}
+<p >{{ question_table.pergunta }}
+  <br/>
+<input  type="text"  name='{{question_table.id}}'   />
+</p>
+{% endfor %}
+<br/>
+<br/>
+<input class="bg-gray-700 ml-10 mb-10 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-50" type="submit" value="Responder" />
 </form>
-
-
+<br/>
 
 
 {% endblock %}
