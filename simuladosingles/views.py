@@ -67,27 +67,31 @@ def simplecontinuouspresent(request):
 def simplepresent(request):
     question_list = FillInBlank_by_topic.objects.filter(assunto="simplepresent").order_by("id")
     question_list_table= FillInBlank_by_topic.objects.filter(assunto="simplepresenttable").order_by("id")  
-
+    question_list_q3= FillInBlank_by_topic.objects.filter(assunto="simplepresentQ3").order_by("id")  
     context = {
         "question_list": question_list,
         "question_list_table": question_list_table,
+        "question_list_q3": question_list_q3,
     }
     return render(request, 'simplepresent.html',context)
 
 def resultsimplepresent(request):
     question_list = FillInBlank_by_topic.objects.filter(assunto="simplepresent").order_by("id")
     question_list_table = FillInBlank_by_topic.objects.filter(assunto="simplepresenttable").order_by("id")
-
+    question_list_q3= FillInBlank_by_topic.objects.filter(assunto="simplepresentQ3").order_by("id")  
     respostas = []    
     respostas_table = []
+    respostas_q3 = []
     for answer in question_list:
         respostas.append(request.GET[str(answer.id)])
     for answer in question_list_table:
         respostas_table.append(request.GET[str(answer.id)])
+    for answer in question_list_q3:
+        respostas_q3.append(request.GET[str(answer.id)])
     context = {
         "question_list": zip(question_list,respostas),
         "question_list_table": zip(question_list_table,respostas_table),
-
+        "question_list_q3":zip(question_list_q3,respostas_q3),
     }
     return render(request, 'resultsimplepresent.html',context)
 
