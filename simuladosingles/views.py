@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from .models import Question
 from .models import FillInBlank_by_topic
 
@@ -44,8 +45,8 @@ def resultado_questionario(request):
         
     
 def login_view(request):
-    username = request.GET["name"]
-    password = request.GET["senha"]
+    username = request.POST["name"]
+    password = request.POST["senha"]
     user = authenticate(request, username=username, password=password)
     if user is not None:
         login(request)
