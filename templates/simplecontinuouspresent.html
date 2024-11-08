@@ -42,6 +42,12 @@
   <p > <input  type="text"  name='{{question.id}}' class="w-400" /></p>
 {% endfor %}
 <br/>
+<p class="mt-3 text-lg text-gray-500">Use a preposition ( ON, IN, AT, BY ) in each blank:</p>
+{% for question in question_list_questao4 %}
+  <p>{{ question.pergunta }}</p>  
+  <p > <input  type="text"  name='{{question.id}}' class="w-400" /></p>
+{% endfor %}
+<br/>
       <input class="bg-gray-700 ml-10 mb-10 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-50" type="submit" value="Responder" />
     </form>
 </p>
