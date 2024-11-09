@@ -1,14 +1,16 @@
 from django.shortcuts import render
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
 from .models import Question
 from .models import FillInBlank_by_topic
 
 # Create your views here.
 def home(request):
-    return render(request, 'home.html')
+    if request.user.is_authenticated:
+        return render(request, 'home.html')
+    else:
+        return render(request, 'login.html')
 
-def login(request):
+def loginpage(request):
     return render(request, 'login.html')
 
 def questionario(request):
@@ -49,92 +51,105 @@ def login_view(request):
     password = request.POST["senha"]
     user = authenticate(request, username=username, password=password)
     if user is not None:
-        login(request)
+        login(request, user)
         context = {
             'nome': username.upper() ,
         }
         return render(request, "welcome.html",context)
     else:
         return render(request, "badlogin.html")
+    
+def logout_view(request):
+    logout(request)
+    return render(request, "logoutpage.html")
 
 def simplecontinuouspresent(request):
-    question_list = FillInBlank_by_topic.objects.filter(assunto="simplecontinuouspresent").order_by("id")
-    question_list_questao2 = FillInBlank_by_topic.objects.filter(assunto="simplecontinuouspresentquestao2").order_by("id")
-    question_list_questao3 = FillInBlank_by_topic.objects.filter(assunto="simplecontinuouspresentquestao3").order_by("id")
-    question_list_questao4 = FillInBlank_by_topic.objects.filter(assunto="simplecontinuouspresentquestao4").order_by("id")
+    if request.user.is_authenticated:
+        question_list = FillInBlank_by_topic.objects.filter(assunto="simplecontinuouspresent").order_by("id")
+        question_list_questao2 = FillInBlank_by_topic.objects.filter(assunto="simplecontinuouspresentquestao2").order_by("id")
+        question_list_questao3 = FillInBlank_by_topic.objects.filter(assunto="simplecontinuouspresentquestao3").order_by("id")
+        question_list_questao4 = FillInBlank_by_topic.objects.filter(assunto="simplecontinuouspresentquestao4").order_by("id")
 
-    context = {
-            "question_list": question_list,
-            "question_list_questao2": question_list_questao2,
-            "question_list_questao3": question_list_questao3,
-            "question_list_questao4": question_list_questao4,
+        context = {
+                "question_list": question_list,
+                "question_list_questao2": question_list_questao2,
+                "question_list_questao3": question_list_questao3,
+                "question_list_questao4": question_list_questao4,
 
-        }       
-    return render(request, 'simplecontinuouspresent.html',context)
+            }       
+        return render(request, 'simplecontinuouspresent.html',context)  
+    else:
+        return render(request, 'login.html')
         
         
-        
-    
-
 def simplepresent(request):
-    question_list = FillInBlank_by_topic.objects.filter(assunto="simplepresent").order_by("id")
-    question_list_table= FillInBlank_by_topic.objects.filter(assunto="simplepresenttable").order_by("id")  
-    question_list_q3= FillInBlank_by_topic.objects.filter(assunto="simplepresentQ3").order_by("id")  
-    context = {
-            "question_list": question_list,
-            "question_list_table": question_list_table,
-            "question_list_q3": question_list_q3,       
-        }
-    return render(request, 'simplepresent.html',context)
+    if request.user.is_authenticated:
+        question_list = FillInBlank_by_topic.objects.filter(assunto="simplepresent").order_by("id")
+        question_list_table= FillInBlank_by_topic.objects.filter(assunto="simplepresenttable").order_by("id")  
+        question_list_q3= FillInBlank_by_topic.objects.filter(assunto="simplepresentQ3").order_by("id")  
+        context = {
+                "question_list": question_list,
+                "question_list_table": question_list_table,
+                "question_list_q3": question_list_q3,       
+            }
+        return render(request, 'simplepresent.html',context)
+    else:
+        return render(request, 'login.html')
         
     
 
 def resultsimplepresent(request):
-        question_list = FillInBlank_by_topic.objects.filter(assunto="simplepresent").order_by("id")
-        question_list_table = FillInBlank_by_topic.objects.filter(assunto="simplepresenttable").order_by("id")
-        question_list_q3= FillInBlank_by_topic.objects.filter(assunto="simplepresentQ3").order_by("id")  
-        respostas = []    
-        respostas_table = []
-        respostas_q3 = []
-        for answer in question_list:
-            respostas.append(request.GET[str(answer.id)])
-        for answer in question_list_table:
-            respostas_table.append(request.GET[str(answer.id)])
-        for answer in question_list_q3:
-            respostas_q3.append(request.GET[str(answer.id)])
-        context = {
-            "question_list": zip(question_list,respostas),
-            "question_list_table": zip(question_list_table,respostas_table),
-            "question_list_q3":zip(question_list_q3,respostas_q3),
-        }
-        return render(request, 'resultsimplepresent.html',context)
+        if request.user.is_authenticated:
+            question_list = FillInBlank_by_topic.objects.filter(assunto="simplepresent").order_by("id")
+            question_list_table = FillInBlank_by_topic.objects.filter(assunto="simplepresenttable").order_by("id")
+            question_list_q3= FillInBlank_by_topic.objects.filter(assunto="simplepresentQ3").order_by("id")  
+            respostas = []    
+            respostas_table = []
+            respostas_q3 = []
+            for answer in question_list:
+                respostas.append(request.GET[str(answer.id)])
+            for answer in question_list_table:
+                respostas_table.append(request.GET[str(answer.id)])
+            for answer in question_list_q3:
+                respostas_q3.append(request.GET[str(answer.id)])
+            context = {
+                "question_list": zip(question_list,respostas),
+                "question_list_table": zip(question_list_table,respostas_table),
+                "question_list_q3":zip(question_list_q3,respostas_q3),
+            }
+            return render(request, 'resultsimplepresent.html',context)
+        else:
+            return render(request, 'login.html')
     
 
 def resultsimplecontinuouspresent(request):
-        question_list= FillInBlank_by_topic.objects.filter(assunto="simplecontinuouspresent").order_by("id")  
-        question_list_questao2= FillInBlank_by_topic.objects.filter(assunto="simplecontinuouspresentquestao2").order_by("id")  
-        question_list_questao3= FillInBlank_by_topic.objects.filter(assunto="simplecontinuouspresentquestao3").order_by("id")  
-        question_list_questao4= FillInBlank_by_topic.objects.filter(assunto="simplecontinuouspresentquestao4").order_by("id")  
+        if request.user.is_authenticated:
+            question_list= FillInBlank_by_topic.objects.filter(assunto="simplecontinuouspresent").order_by("id")  
+            question_list_questao2= FillInBlank_by_topic.objects.filter(assunto="simplecontinuouspresentquestao2").order_by("id")  
+            question_list_questao3= FillInBlank_by_topic.objects.filter(assunto="simplecontinuouspresentquestao3").order_by("id")  
+            question_list_questao4= FillInBlank_by_topic.objects.filter(assunto="simplecontinuouspresentquestao4").order_by("id")  
 
-        respostas = []       
-        respostas_questao2 = []
-        respostas_questao3 = []
-        respostas_questao4 = []
-        for answer in question_list:
-            respostas.append(request.GET[str(answer.id)])
-        for answer in question_list_questao2:
-            respostas_questao2.append(request.GET[str(answer.id)])
-        for answer in question_list_questao3:
-            respostas_questao3.append(request.GET[str(answer.id)])
-        for answer in question_list_questao4:
-            respostas_questao4.append(request.GET[str(answer.id)])
-        context = {
-            # "question_list": question_list,
-            "question_list" :zip(question_list,respostas),
-            "question_list_questao2" :zip(question_list_questao2,respostas_questao2),
-            "question_list_questao3" :zip(question_list_questao3,respostas_questao3),
-            "question_list_questao4" :zip(question_list_questao4,respostas_questao4),
+            respostas = []       
+            respostas_questao2 = []
+            respostas_questao3 = []
+            respostas_questao4 = []
+            for answer in question_list:
+                respostas.append(request.GET[str(answer.id)])
+            for answer in question_list_questao2:
+                respostas_questao2.append(request.GET[str(answer.id)])
+            for answer in question_list_questao3:
+                respostas_questao3.append(request.GET[str(answer.id)])
+            for answer in question_list_questao4:
+                respostas_questao4.append(request.GET[str(answer.id)])
+            context = {
+                # "question_list": question_list,
+                "question_list" :zip(question_list,respostas),
+                "question_list_questao2" :zip(question_list_questao2,respostas_questao2),
+                "question_list_questao3" :zip(question_list_questao3,respostas_questao3),
+                "question_list_questao4" :zip(question_list_questao4,respostas_questao4),
 
-        }
-        return render(request, 'resultsimplecontinuouspresent.html',context)
+            }
+            return render(request, 'resultsimplecontinuouspresent.html',context)
+        else:
+            return render(request, 'login.html')
     
