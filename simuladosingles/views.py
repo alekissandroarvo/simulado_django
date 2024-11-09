@@ -51,7 +51,7 @@ def login_view(request):
     password = request.GET["senha"]
     user = authenticate(request, username=username, password=password)
     if user is not None:
-        login(request, user)
+        login(request)
         context = {
             'nome': username.upper() ,
         }
