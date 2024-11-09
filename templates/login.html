@@ -9,7 +9,7 @@
 {% block content %}
 <!-- <div class="verso"> -->
     <div class="sm:col-span-4"></div>
-    <form action="{% url 'welcome' %}" method="post" class="form-example">
+    <form action="{% url 'welcome' %}" method="get" class="form-example">
         {% csrf_token %}
         <fieldset>        
             <div class="bg-gray-100 flex justify-center items-center h-screen">               
